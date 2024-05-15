@@ -1,4 +1,4 @@
-import {Script, useNonce, useShopifyCookies, UNSTABLE_Analytics as Analytics, getShopAnalytics} from '@shopify/hydrogen';
+import {Script, useNonce, useShopifyCookies} from '@shopify/hydrogen';
 import {defer, type LoaderFunctionArgs} from '@shopify/remix-oxygen';
 import {
   Links,
@@ -83,17 +83,6 @@ export async function loader({context}: LoaderFunctionArgs) {
       header: await headerPromise,
       isLoggedIn: isLoggedInPromise,
       publicStoreDomain,
-
-     //  shop: getShopAnalytics({
-     //   storefront,
-     //   publicStorefrontId: env.PUBLIC_STOREFRONT_ID,
-     // }),
-     //
-     // consent: {
-     //   checkoutDomain: env.PUBLIC_CHECKOUT_DOMAIN,
-     //   storefrontAccessToken: env.PUBLIC_STOREFRONT_API_TOKEN,
-     // },
-
     },
     {
       headers: {
