@@ -1,4 +1,4 @@
-import {useNonce} from '@shopify/hydrogen';
+import {Script, useNonce, useShopifyCookies, UNSTABLE_Analytics as Analytics, getShopAnalytics} from '@shopify/hydrogen';
 import {defer, type LoaderFunctionArgs} from '@shopify/remix-oxygen';
 import {
   Links,
@@ -54,8 +54,8 @@ export function links() {
 }
 
 export async function loader({context}: LoaderFunctionArgs) {
-  const {storefront, customerAccount, cart} = context;
-  const publicStoreDomain = context.env.PUBLIC_STORE_DOMAIN;
+  const {storefront, customerAccount, cart, env} = context;
+  const publicStoreDomain = env.PUBLIC_STORE_DOMAIN;
 
   const isLoggedInPromise = customerAccount.isLoggedIn();
   const cartPromise = cart.get();
@@ -83,6 +83,17 @@ export async function loader({context}: LoaderFunctionArgs) {
       header: await headerPromise,
       isLoggedIn: isLoggedInPromise,
       publicStoreDomain,
+
+     //  shop: getShopAnalytics({
+     //   storefront,
+     //   publicStorefrontId: env.PUBLIC_STOREFRONT_ID,
+     // }),
+     //
+     // consent: {
+     //   checkoutDomain: env.PUBLIC_CHECKOUT_DOMAIN,
+     //   storefrontAccessToken: env.PUBLIC_STOREFRONT_API_TOKEN,
+     // },
+
     },
     {
       headers: {
@@ -95,10 +106,16 @@ export async function loader({context}: LoaderFunctionArgs) {
 export default function App() {
   const nonce = useNonce();
   const data = useLoaderData<typeof loader>();
+  useShopifyCookies({ hasUserConsent: true });
 
   return (
     <html lang="en">
       <head>
+        <Script
+          id="pebblepost_pixel"
+          type="text/javascript"
+          src="https://cdn.pbbl.co/r/2525.js"
+        />
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
