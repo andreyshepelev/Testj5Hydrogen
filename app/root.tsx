@@ -100,11 +100,6 @@ export default function App() {
   return (
     <html lang="en">
       <head>
-        <Script
-          id="pebblepost_pixel"
-          type="text/javascript"
-          src="https://cdn.pbbl.co/r/2525.js"
-        />
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
@@ -115,6 +110,11 @@ export default function App() {
           <Outlet />
         </Layout>
         <ScrollRestoration nonce={nonce} />
+        <Script
+            id="pebblepost_pixel"
+            type="text/javascript"
+            src="https://cdn.pbbl.co/r/2525.js"
+        />
         <Scripts nonce={nonce} />
       </body>
     </html>
