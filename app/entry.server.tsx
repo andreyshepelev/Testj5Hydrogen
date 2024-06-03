@@ -27,7 +27,10 @@ export default async function handleRequest(
     ],
     imgSrc: [
       "'self'",
+      'cdn.shopify.com',
+      'shopify.com',
       'https://px0.pbbl.co',
+      'https://aa.agkn.com',
     ],
   });
 
