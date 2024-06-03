@@ -21,6 +21,9 @@ export default async function handleRequest(
       "'self'",
       'https://cdn.pbbl.co',
     ],
+    imgSrc: [
+      'https://px0.pbbl.co',
+    ],
   });
 
   const body = await renderToReadableStream(
