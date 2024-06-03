@@ -21,7 +21,12 @@ export default async function handleRequest(
       "'self'",
       'https://cdn.pbbl.co',
     ],
+    frameSrc: [
+      "'self'",
+      'https://cdn.pbbl.co',
+    ],
     imgSrc: [
+      "'self'",
       'https://px0.pbbl.co',
     ],
   });
