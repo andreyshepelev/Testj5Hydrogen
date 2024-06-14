@@ -18,6 +18,7 @@ export default async function handleRequest(
     ],
     connectSrc: ["'self'"],
     scriptSrc: [
+      "'self'",
       'https://cdn.pbbl.co',
     ],
     frameSrc: [
