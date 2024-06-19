@@ -32,15 +32,6 @@ export default async function handleRequest(
       'https://px0.pbbl.co',
       'https://aa.agkn.com',
     ],
-    objectSrc: "'none'",
-    childSrc: "'self'",
-    fontSrc: [
-      'fonts.googleapis.com',
-      'fonts.gstatic.com',
-    ],
-    formAction: "'none'",
-    manifestSrc: "'self'",
-    mediaSrc: "'none'",
   });
 
   const body = await renderToReadableStream(
