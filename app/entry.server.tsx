@@ -15,9 +15,9 @@ export default async function handleRequest(
       "'self'",
       'cdn.shopify.com',
       'shopify.com',
+      'https://cdn.pbbl.co',
     ],
-    connectSrc: ["'self'"],
-    scriptSrc: [
+    connectSrc: [
       "'self'",
       'https://cdn.pbbl.co',
     ],
