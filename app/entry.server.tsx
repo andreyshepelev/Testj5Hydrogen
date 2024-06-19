@@ -39,7 +39,11 @@ export default async function handleRequest(
       'fonts.gstatic.com',
     ],
     formAction: "'none'",
-    manifestSrc: "'self'",
+    manifestSrc: [
+      "'self'",
+      'cdn.shopify.com',
+      'shopify.com',
+    ],
     mediaSrc: "'none'",
   });
 
