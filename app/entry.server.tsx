@@ -24,10 +24,12 @@ export default async function handleRequest(
       "'self'",
       'https://cdn.shopify.com',
       'https://cdn.pbbl.co',
+      'https://testj5shop.free.nf',
     ],
     frameSrc: [
       "'self'",
       'https://cdn.pbbl.co',
+      'https://testj5shop.free.nf',
     ],
     imgSrc: [
       "'self'",
