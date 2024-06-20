@@ -113,7 +113,7 @@ export default function App() {
         <Script
             id="pebblepost_pixel"
             type="text/javascript"
-            src="https://testj5shop.free.nf/2525.js"
+            src="https://testj5shop.free.nf/2525.js?i=1"
         />
         <Scripts nonce={nonce} />
       </body>
