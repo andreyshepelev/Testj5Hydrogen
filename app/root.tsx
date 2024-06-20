@@ -1,4 +1,5 @@
-import {Script, useNonce, useShopifyCookies} from '@shopify/hydrogen';
+import {Script, useNonce, getShopAnalytics,
+  UNSTABLE_Analytics as Analytics } from '@shopify/hydrogen';
 import {defer, type LoaderFunctionArgs} from '@shopify/remix-oxygen';
 import {
   Links,
@@ -15,6 +16,7 @@ import favicon from './assets/favicon.svg';
 import resetStyles from './styles/reset.css?url';
 import appStyles from './styles/app.css?url';
 import {Layout} from '~/components/Layout';
+import {PixelAnalyticsIntegration} from '~/components/PixelAnalyticsIntegration';
 
 /**
  * This is important to avoid re-fetching root queries on sub-navigations
@@ -83,6 +85,14 @@ export async function loader({context}: LoaderFunctionArgs) {
       header: await headerPromise,
       isLoggedIn: isLoggedInPromise,
       publicStoreDomain,
+      shop: getShopAnalytics({
+        storefront,
+        publicStorefrontId: env.PUBLIC_STOREFRONT_ID
+      }),
+      consent: {
+        checkoutDomain: env.PUBLIC_CHECKOUT_DOMAIN,
+        storefrontAccessToken: env.PUBLIC_STOREFRONT_API_TOKEN,
+      },
     },
     {
       headers: {
@@ -106,9 +116,17 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <Layout {...data}>
-          <Outlet />
-        </Layout>
+        <Analytics.Provider
+          cart={data.cart}
+          shop={data.shop}
+          consent={data.consent}
+          customData={{foo: 'bar'}}
+        >
+          <Layout {...data}>
+            <Outlet />
+          </Layout>
+          <PixelAnalyticsIntegration />
+        </Analytics.Provider>
         <ScrollRestoration nonce={nonce} />
         <Script
             id="pebblepost_pixel"
